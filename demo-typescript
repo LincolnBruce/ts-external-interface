@@ -1,0 +1,23 @@
+/**
+* Use Egret Wing For EUI Project Demo.
+*/
+class Main extends egret.DisplayObjectContainer {
+
+    static NAME:string = 'linyang_egret';
+    
+    public constructor() {
+        super();
+        
+        //调用js函数
+        Local.ExternalInterface.call('hello','a','b');
+        //给web前端增加回调函数
+        Local.ExternalInterface.addCallBack('say',this.onSay);
+        
+        //init console.log();
+        egret.log('init');
+    }
+    
+    private onSay(...params):void{
+        egret.log('onSay '+params.toString());
+    }
+}

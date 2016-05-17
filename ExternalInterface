@@ -1,0 +1,29 @@
+/**
+ * typescript & javascript callback/call
+ */
+module Local {
+    export class ExternalInterface {
+        private static _list: any = {};
+        
+        /**
+         * Typescript call javascript function.
+         */
+        static call(functionString: string, ...params): any {
+            return eval(functionString)(params);
+        }
+           
+        /**
+         * Typescript为javascript增加回调函数.
+         */
+        static addCallBack(functionString: string, funcInstance: Function): void {
+            this._list[functionString] = funcInstance;
+        }
+        
+        /**
+         * Javascript调用项目内函数.
+         */
+        static use(functionString,...params):any{
+            return this._list[functionString](params);
+        }
+    }
+}
